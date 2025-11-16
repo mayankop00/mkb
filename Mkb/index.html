@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Chase Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameArea">
+        <div class="hud">
+            <div class="hud-item">Score: <span class="score-display" id="score">0</span></div>
+            <div class="hud-item">Lives: <span class="lives-display" id="lives">3</span> ❤️</div>
+        </div>
+
+        <button class="menu-btn" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="menu-overlay" id="menuOverlay">
+            <div class="menu-title">🔥 Game Menu</div>
+            <button class="menu-button" id="restartBtn">
+                🔄 Restart Game
+            </button>
+            <button class="menu-button sound" id="soundToggle">
+                <span id="soundIcon">🔊</span> Sound: <span id="soundStatus">ON</span>
+            </button>
+            <button class="menu-button close" id="closeMenu">
+                ✖️ Close Menu
+            </button>
+        </div>
+
+        <div id="character">
+            <img src="mkb.png" alt="Character">
+        </div>
+        <div id="fire" style="display: none;">🔥</div>
+        <div class="instructions" id="instructions">Touch or move mouse to start!<br>Avoid water drops! 💧</div>
+        
+        <div class="game-over" id="gameOver">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <button id="playAgainBtn">Play Again</button>
+        </div>
+    </div>
+
+    <audio id="audio" src="mkb.MP3" preload="auto"></audio>
+    <audio id="audioLoseLife" src="ae.mp3" preload="auto"></audio>
+    <audio id="audioGameOver" src="end.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
