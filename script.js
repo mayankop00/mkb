@@ -81,7 +81,6 @@ function playSound() {
     }
 }
 
-// **** THIS IS THE FIRST UPDATED FUNCTION ****
 function createWaterDrop() {
     if (!gameActive) return;
 
@@ -90,7 +89,8 @@ function createWaterDrop() {
         var drop = document.createElement('div');
         drop.className = 'water-drop';
         drop.textContent = '💧';
-        drop.style.left = Math.random() * (gameArea.clientWidth - 40) + 'px';
+        // **** FIX: Use window.innerWidth ****
+        drop.style.left = Math.random() * (window.innerWidth - 40) + 'px';
         drop.style.top = '-40px';
         gameArea.appendChild(drop);
         
@@ -105,12 +105,10 @@ function createWaterDrop() {
 
     spawnSingleDrop(); // Always spawn one drop
 
-    // NEW: If score is 700 or more, spawn a second drop
     if (score >= 700) {
         spawnSingleDrop();
     }
 }
-// **** END OF FIRST UPDATED FUNCTION ****
 
 function updateWaterDrops() {
     if (!gameActive) return;
@@ -151,14 +149,14 @@ function updateWaterDrops() {
             continue;
         }
         
-        if (drop.y > gameArea.clientHeight) {
+        // **** FIX: Use window.innerHeight ****
+        if (drop.y > window.innerHeight) {
             gameArea.removeChild(drop.element);
             waterDrops.splice(i, 1);
         }
     }
 }
 
-// **** THIS IS THE SECOND UPDATED FUNCTION ****
 function updateDifficulty() {
     if (score <= 50) {
         DROP_SPEED = BASE_DROP_SPEED; // 3
@@ -200,7 +198,6 @@ function updateDifficulty() {
         dropInterval = setInterval(createWaterDrop, DROP_INTERVAL);
     }
 }
-// **** END OF SECOND UPDATED FUNCTION ****
 
 function endGame() {
     playOneShotSound(audioGameOver);
@@ -221,8 +218,9 @@ function startGame() {
     score = 0;
     lives = 3;
     
-    charX = (gameArea.clientWidth / 2) - (CHAR_SIZE / 2);
-    charY = (gameArea.clientHeight / 2) - (CHAR_SIZE / 2);
+    // **** FIX: Use window.innerWidth/Height ****
+    charX = (window.innerWidth / 2) - (CHAR_SIZE / 2);
+    charY = (window.innerHeight / 2) - (CHAR_SIZE / 2);
     
     DROP_SPEED = BASE_DROP_SPEED;
     DROP_INTERVAL = BASE_DROP_INTERVAL;
@@ -279,8 +277,9 @@ function moveCharacter(fireX, fireY) {
         charX = charX - Math.cos(angle) * MOVE_SPEED;
         charY = charY - Math.sin(angle) * MOVE_SPEED;
 
-        var maxX = gameArea.clientWidth - CHAR_SIZE;
-        var maxY = gameArea.clientHeight - CHAR_SIZE;
+        // **** FIX: Use window.innerWidth/Height ****
+        var maxX = window.innerWidth - CHAR_SIZE;
+        var maxY = window.innerHeight - CHAR_SIZE;
         charX = Math.max(0, Math.min(maxX, charX));
         charY = Math.max(0, Math.min(maxY, charY));
 
